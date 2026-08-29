@@ -697,6 +697,10 @@ Unlike a plain HTML/CSS/JS repository, which Cloudflare can serve directly from
 source, this one has a build step: Cloudflare runs `npm install` and the build
 command, then serves the generated `homepage/dist/` folder.
 
+Every push to `main` rebuilds and redeploys the whole site automatically.
+Pushes to any other branch get their own preview URL instead, so an unfinished
+challenge can be checked without touching production.
+
 **Root directory must stay blank.** It is tempting to point Cloudflare at
 `homepage/`, but `package-lock.json` and the workspaces config live at the repo
 root and npm needs both. The build command reaches into the workspaces for you.
