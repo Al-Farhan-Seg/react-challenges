@@ -16,7 +16,8 @@
     "build:homepage": "npm run build --workspace @react-challenges/homepage",
     "preview:homepage": "npm run preview --workspace @react-challenges/homepage",
     "build:all": "npm run build --workspaces --if-present",
-    "workspaces:list": "npm query .workspace"
+    "workspaces:list": "npm query .workspace",
+    "build:site": "node scripts/build-site.mjs"
   },
   "engines": {
     "node": ">=20.19.0"

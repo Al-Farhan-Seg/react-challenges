@@ -260,7 +260,8 @@ Unless a row says otherwise, **run every command from the repository root**
 | `npm run dev:homepage` | Starts the Vite dev server for the homepage with hot reloading, at `http://localhost:5173`. Stop it with `Ctrl+C`. | Root |
 | `npm run build:homepage` | Compiles the homepage for production into `homepage/dist/`. This is the command Cloudflare Pages will run. | Root |
 | `npm run preview:homepage` | Serves the already-built `homepage/dist/` locally, so you can check the production build before deploying. Run `build:homepage` first. | Root |
-| `npm run build:all` | Builds every workspace that has a `build` script. Today that is just the homepage; later it will build every challenge you have started. | Root |
+| `npm run build:site` | **The deploy build.** Builds the homepage, then builds every initialised challenge and copies each into `homepage/dist/<source>/<slug>/`, producing one static site containing everything. This is the command Cloudflare Pages runs. | Root |
+| `npm run build:all` | Builds every workspace that has a `build` script, leaving each `dist/` where it is. Useful for checking that everything still compiles, without assembling the combined site. | Root |
 | `npm run workspaces:list` | Prints every folder npm currently treats as a workspace. Useful for confirming a new challenge was picked up. | Root |
 | `npm run dev --workspace @react-challenges/<name>` | Starts the dev server for any single workspace by name. This is how you run an individual challenge. | Root |
 | `npm run build --workspace @react-challenges/<name>` | Builds any single workspace by name. | Root |
@@ -344,7 +345,8 @@ npm install tailwindcss @tailwindcss/vite --save-dev --workspace @react-challeng
 This adds Tailwind to *that workspace's* `package.json` while still installing
 into the shared root `node_modules/`.
 
-Then register the plugin in `react-practice/02-accordion/vite.config.js`:
+Then register the plugin in `react-practice/02-accordion/vite.config.js`, and
+set the `base` path at the same time:
 
 ```js
 import { defineConfig } from 'vite'
@@ -352,9 +354,18 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
+  base: '/react-practice/02-accordion/',
   plugins: [react(), tailwindcss()],
 })
 ```
+
+**`base` matters.** The whole repository deploys as one site, and this
+challenge will be served from `/react-practice/02-accordion/` rather than from
+the root. Without `base`, Vite writes asset paths like `/assets/index.js`,
+which will 404 once deployed — the page loads with no CSS and no JavaScript.
+
+The value is always a leading slash, the challenge's folder path, and a
+trailing slash. `npm run build:site` warns you if you forget it.
 
 ### Step 6 — add the Tailwind directive to the stylesheet
 
@@ -607,6 +618,50 @@ npm run build:homepage
 npm run preview:homepage
 ```
 
+To build the **whole** site — the homepage plus every challenge you have
+started — use the deploy build instead:
+
+```bash
+npm run build:site
+```
+
+---
+
+## Deploying a challenge
+
+Challenges do **not** each get their own Cloudflare Pages project. That would
+mean dozens of projects, and because every project connected to this repository
+rebuilds on every push to `main`, a single commit would trigger dozens of
+builds and burn through the free tier's monthly build allowance.
+
+Instead the entire repository is one Pages project. `npm run build:site`
+assembles everything into a single `homepage/dist/` folder, and each challenge
+is served from a subfolder matching its path in the repo:
+
+```text
+reactchallenges.example.com/                              <- the dashboard
+reactchallenges.example.com/react-practice/02-accordion/  <- a challenge
+```
+
+So to deploy a challenge, there is nothing to configure. Just:
+
+1. Make sure its `vite.config.js` sets `base` (see
+   [step 5](#step-5--add-tailwind-css) of the setup procedure).
+2. Set its `liveUrl` in `homepage/src/data/challenges.js` to its subpath:
+
+   ```js
+   liveUrl: '/react-practice/02-accordion/',
+   ```
+
+3. Commit and push. Cloudflare rebuilds the whole site, and the card's
+   "Not deployed" label becomes a working "View project" link.
+
+Run `npm run build:site` locally first if you want to check it before pushing —
+it prints every path it produced.
+
+A separate Pages project is only worth it if a particular challenge needs its
+own domain.
+
 ---
 
 ## Cloudflare Pages note
@@ -615,12 +670,26 @@ This repository is structured to be deployed to Cloudflare Pages, but **no
 Cloudflare account, project, or deployment is configured yet.** That will be set
 up separately, through the Cloudflare dashboard.
 
-The only thing worth recording now is what the build produces:
+The whole repository deploys as **one** Cloudflare Pages project:
 
 | | |
 | --- | --- |
-| Build command | `npm run build:homepage` |
+| Build command | `npm run build:site` |
 | Build output directory | `homepage/dist` |
+| Root directory | *leave blank* |
+
+`npm run build:site` builds the homepage, then builds every challenge that has
+actually been initialised and copies each one into the site underneath the
+homepage:
+
+```text
+/                                  ->  the dashboard
+/react-practice/02-accordion/      ->  that challenge
+/frontend-mentor/01-results-summary/
+```
+
+So one push deploys everything, and there is no need for a separate Pages
+project per challenge. See [Deploying a challenge](#deploying-a-challenge).
 
 This is a plain static site. It needs no Cloudflare Workers, no Pages
 Functions, and no Cloudflare-specific code — and none of those have been added.
@@ -628,6 +697,6 @@ Unlike a plain HTML/CSS/JS repository, which Cloudflare can serve directly from
 source, this one has a build step: Cloudflare runs `npm install` and the build
 command, then serves the generated `homepage/dist/` folder.
 
-Each challenge you initialise later is a separate Vite application producing its
-own `dist/` folder, and can be deployed as its own Cloudflare Pages project the
-same way.
+**Root directory must stay blank.** It is tempting to point Cloudflare at
+`homepage/`, but `package-lock.json` and the workspaces config live at the repo
+root and npm needs both. The build command reaches into the workspaces for you.

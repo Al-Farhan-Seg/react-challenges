@@ -13,6 +13,11 @@ export default function ChallengeCard({ challenge }) {
   const label = challenge.difficulty ?? challenge.category
   const isLive = Boolean(challenge.liveUrl)
 
+  // Challenges deployed as part of this site use a relative path like
+  // '/react-practice/02-accordion/', so they should open in the same tab.
+  // Only a full external URL gets target="_blank".
+  const opensExternally = isLive && /^https?:\/\//.test(challenge.liveUrl)
+
   return (
     <article className="flex flex-col rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-slate-300 hover:shadow-md">
       <div className="flex items-start justify-between gap-3">
@@ -49,8 +54,8 @@ export default function ChallengeCard({ challenge }) {
         {isLive ? (
           <a
             href={challenge.liveUrl}
-            target="_blank"
-            rel="noreferrer"
+            target={opensExternally ? '_blank' : undefined}
+            rel={opensExternally ? 'noreferrer' : undefined}
             className="font-medium text-sky-700 underline-offset-4 hover:underline"
           >
             View project
