@@ -2,6 +2,8 @@
 
 Building React projects one challenge at a time.
 
+**Live:** https://react-challenges.farhansegujja.com/
+
 ---
 
 ## What this repository is
