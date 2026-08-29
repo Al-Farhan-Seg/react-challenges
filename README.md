@@ -21,6 +21,26 @@ progress, and deploy the results:
 There are **55 challenges** catalogued: 32 from Frontend Mentor, 13 from React
 Practice, and 10 from devChallenges.
 
+### On how this repository was set up
+
+The scaffolding in the first commit — the npm Workspaces structure, the build
+tooling, the homepage dashboard, and this README — was generated with
+[Claude Code](https://claude.com/claude-code) (Anthropic's CLI), working from a
+specification I wrote.
+
+I want that stated plainly rather than left ambiguous. What the AI produced was
+**the empty frame**: folders, configuration, documentation, and a dashboard that
+renders a list. It solved none of the challenges, and it was explicitly
+instructed not to.
+
+Every challenge in this repository is mine to build. That is the entire point of
+the repo — I am a Computer Science student learning full-stack development, and
+the reason these 55 folders exist is so that I write the code that fills them.
+The scaffold saved me a day of configuration; it did not save me any of the
+learning, and it was never meant to.
+
+If you are reading a solution in here, I wrote it.
+
 Every application in this repository is built the same way, on purpose, so that
 switching between challenges never means re-learning the setup:
 

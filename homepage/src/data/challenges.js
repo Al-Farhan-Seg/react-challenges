@@ -567,11 +567,11 @@ export const challenges = [
     difficulty: null,
     category: 'Fundamentals',
     calendarDay: 'Day 2',
-    status: 'in-progress',
+    status: 'not-started',
     premium: false,
     originalUrl: 'https://reactpractice.dev/exercise/build-an-accordion-component/',
     localPath: 'react-practice/02-accordion',
-    liveUrl: '/react-practice/02-accordion/',
+    liveUrl: null,
   },
   {
     id: 'rp-03',

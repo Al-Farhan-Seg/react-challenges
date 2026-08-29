@@ -17,10 +17,17 @@ deployment, written to be re-read later.
 | Custom domain | https://react-challenges.farhansegujja.com/ |
 | Pages subdomain | https://react-challenges.pages.dev/ |
 | GitHub | https://github.com/Al-Farhan-Seg/react-challenges |
-| First challenge live at | `/react-practice/02-accordion/` |
+| Challenges initialised | none yet — all 55 are placeholders |
 
 Both URLs serve the same deployment. Every push to `main` rebuilds and
 redeploys automatically.
+
+The pipeline for deploying a challenge is built and was tested end to end (an
+accordion workspace was scaffolded, deployed to
+`/react-practice/02-accordion/`, verified, and then removed again so that every
+challenge on the dashboard is one I build myself). So the first challenge I
+finish deploys with no new setup — see
+[One project, not fifty-six](#one-project-not-fifty-six).
 
 ---
 
@@ -248,12 +255,17 @@ today and are silently ignored.
 
 ### What happens when you run `npm install` at the root
 
+Today `homepage` is the only workspace, so the interesting behaviour is not yet
+visible. The walkthrough below assumes a second one — say
+`react-practice/02-accordion` — has been initialised, because that is when each
+step starts to matter.
+
 1. **Discovery.** npm reads the root `package.json`, expands the globs, and
-   finds every folder with a `package.json`. Today: `homepage` and
-   `react-practice/02-accordion`.
+   finds every folder containing a `package.json`.
 2. **Unification.** It merges every workspace's dependencies into one problem.
-   The homepage wants `react@^19.2.0`; the accordion wants `react@^19.2.8`.
-   npm looks for a single version satisfying both. 19.2.8 does.
+   Suppose the homepage asks for `react@^19.2.0` and the accordion asks for
+   `react@^19.2.8`. Those are *ranges*, and npm looks for a single version
+   satisfying both. 19.2.8 does, so that is what it installs — **once**.
 3. **Hoisting.** That one shared copy is installed at the **root**
    `node_modules/react`, not inside either workspace.
 4. **Linking.** npm creates symlinks in the root `node_modules/` pointing at
@@ -268,6 +280,9 @@ today and are silently ignored.
    `--workspace @react-challenges/02-accordion` resolves to a folder.
 5. **One lockfile.** A single root `package-lock.json` records the unified
    resolution for everything.
+
+The payoff scales: twenty challenges all using React 19 means **one** copy of
+React on disk, not twenty.
 
 ### Why Node still finds packages from inside a workspace
 
