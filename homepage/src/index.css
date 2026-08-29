@@ -1,0 +1,16 @@
+/*
+ * Tailwind CSS v4.
+ *
+ * This single line pulls in Tailwind's base reset, its utility classes and
+ * its theme. There are no `@tailwind base/components/utilities` directives
+ * any more -- that was the v3 syntax.
+ *
+ * Everything below is deliberately small. Component styling belongs in
+ * Tailwind utility classes inside the JSX, not in this file.
+ */
+@import 'tailwindcss';
+
+/* Smooth out in-page anchor jumps between the source sections. */
+html {
+  scroll-behavior: smooth;
+}

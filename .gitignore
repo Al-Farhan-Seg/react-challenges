@@ -1,0 +1,59 @@
+# ---------------------------------------------------------------
+# Dependencies
+# ---------------------------------------------------------------
+# Installed once at the repository root by npm workspaces.
+# Never commit this, and never commit a nested copy either.
+node_modules/
+
+# ---------------------------------------------------------------
+# Build output
+# ---------------------------------------------------------------
+# Vite writes each workspace's production build here (e.g. homepage/dist).
+# Cloudflare Pages regenerates it on every deploy, so it stays out of Git.
+dist/
+build/
+.vite/
+*.local
+
+# ---------------------------------------------------------------
+# Environment variables
+# ---------------------------------------------------------------
+# Secrets and API keys must never be committed...
+.env
+.env.*
+# ...but a checked-in template of the *names* is useful and safe.
+!.env.example
+
+# ---------------------------------------------------------------
+# Logs and caches
+# ---------------------------------------------------------------
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm/
+.cache/
+.eslintcache
+
+# ---------------------------------------------------------------
+# Editors
+# ---------------------------------------------------------------
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+*.sublime-workspace
+
+# ---------------------------------------------------------------
+# Operating system clutter
+# ---------------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/

@@ -1,0 +1,24 @@
+{
+  "name": "react-challenges",
+  "version": "1.0.0",
+  "private": true,
+  "description": "React practice projects from Frontend Mentor, React Practice and devChallenges.",
+  "license": "MIT",
+  "type": "module",
+  "workspaces": [
+    "homepage",
+    "frontend-mentor/*",
+    "react-practice/*",
+    "dev-challenges/*"
+  ],
+  "scripts": {
+    "dev:homepage": "npm run dev --workspace @react-challenges/homepage",
+    "build:homepage": "npm run build --workspace @react-challenges/homepage",
+    "preview:homepage": "npm run preview --workspace @react-challenges/homepage",
+    "build:all": "npm run build --workspaces --if-present",
+    "workspaces:list": "npm query .workspace"
+  },
+  "engines": {
+    "node": ">=20.19.0"
+  }
+}
