@@ -754,11 +754,11 @@ export const challenges = [
     difficulty: 'Junior',
     category: null,
     calendarDay: null,
-    status: 'not-started',
+    status: 'in-progress',
     premium: false,
     originalUrl: 'https://devchallenges.io/challenge/simple-coffee-listing',
     localPath: 'dev-challenges/01-simple-coffee-listing',
-    liveUrl: null,
+    liveUrl: "https://react-challenges.farhansegujja.com/dev-challenges/01-simple-coffee-listing/",
   },
   {
     id: 'dc-02',
