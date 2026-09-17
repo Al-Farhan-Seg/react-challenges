@@ -11,4 +11,7 @@ export default defineConfig({
     // Cloudflare Pages serves this folder as plain static files.
     outDir: 'dist',
   },
+  server: {
+    port: 5050
+  }
 })

@@ -1,0 +1,10 @@
+{
+  "tailwindCSS.experimental.configFile": {
+    "homepage/src/index.css": "homepage/**",
+    ".vscode/tailwind-intellisense.css": [
+      "dev-challenges/**",
+      "frontend-mentor/**",
+      "react-practice/**"
+    ]
+  }
+}

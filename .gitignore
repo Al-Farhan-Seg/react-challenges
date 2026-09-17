@@ -39,7 +39,10 @@ yarn-error.log*
 # Editors
 # ---------------------------------------------------------------
 .vscode/*
+!.vscode/
 !.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tailwind-intellisense.css
 .idea/
 *.swp
 *.sublime-workspace

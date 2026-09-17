@@ -12,7 +12,7 @@
     "dev-challenges/*"
   ],
   "scripts": {
-    "dev:homepage": "npm run dev --workspace @react-challenges/homepage",
+    "dev:homepage": "npm run dev --workspace @react-challenges/homepage -- --host",
     "build:homepage": "npm run build --workspace @react-challenges/homepage",
     "preview:homepage": "npm run preview --workspace @react-challenges/homepage",
     "build:all": "npm run build --workspaces --if-present",
