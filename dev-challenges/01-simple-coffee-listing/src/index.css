@@ -1,1 +1,10 @@
 @import 'tailwindcss';
+body {
+  margin: 0;
+}
+/*
+* {
+    outline: 1px red solid;
+} */
+
+/* outline-3 outline-red-500 */

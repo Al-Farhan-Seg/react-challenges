@@ -1,4 +1,7 @@
 {
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
   "tailwindCSS.experimental.configFile": {
     "homepage/src/index.css": "homepage/**",
     "dev-challenges/01-simple-coffee-listing/src/index.css": [
