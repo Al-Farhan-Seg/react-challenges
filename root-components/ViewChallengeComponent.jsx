@@ -11,7 +11,7 @@ function SourceLink({
       className={`${className}`}
       
     >
-        <span>{label} </span>
+      <span>{label} </span>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="18"
@@ -23,7 +23,7 @@ function SourceLink({
         strokeLinecap="round"
         strokeLinejoin="round"
         aria-hidden="true"
-        className="inline-block pl-3"
+        className="inline-block"
       >
         <path d="m18 16 4-4-4-4" />
         <path d="m6 8-4 4 4 4" />

@@ -115,7 +115,7 @@ function App() {
           <SourceLink
             href="https://devchallenges.io/challenge/simple-coffee-listing"
             label="View Project Source"
-            className='hover:bg-zinc-500 p-3 rounded-md text-zinc-300 transition hover:border-zinc-400 bg-zinc-700 hover:text-white'
+            className='hover:bg-zinc-500 p-3 rounded-md text-zinc-300 transition hover:border-zinc-400 bg-zinc-700 hover:text-white flex justify-center gap-3 items-center'
           />
         </div>
         
