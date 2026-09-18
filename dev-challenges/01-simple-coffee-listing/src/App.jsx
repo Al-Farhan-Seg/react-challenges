@@ -17,6 +17,7 @@ function App() {
         }
 
         const data = await response.json()
+        console.log(data)
 
         setCoffeeData(data)
       } catch (error) {
@@ -44,12 +45,13 @@ function App() {
         <button>Available Now</button>
       </div>
 
-      <div>
+      <div className='flex-col justify-center items-center sm:grid-cols-2 md:grid-cols-3'> // available, id, name, image, price, rating, popular, votes
         {loading ? (
           <p>Loading...</p>
         ) : (
           coffeeData.map(coffee => (
-            <div key={coffee.id}>
+            <div key={coffee.id}
+              className='outline-2 outline-red-400 w-max'>
               <p>{coffee.name}</p>
               <p>{coffee.price}</p>
             </div>

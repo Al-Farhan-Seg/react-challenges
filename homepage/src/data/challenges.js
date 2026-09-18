@@ -7,7 +7,7 @@
  *
  * To update a challenge as you work:
  *   1. `status`  -> 'not-started' | 'in-progress' | 'completed'
- *   2. `liveUrl` -> the deployed URL, once the project is online
+ *   2. `localPath` -> the folder path; it also determines the deployment URL
  *
  * Field reference:
  *   id           Stable unique key (also used as the React list key).
@@ -22,7 +22,7 @@
  *   premium      true if the source puts the challenge behind a paid plan.
  *   originalUrl  Link to the challenge brief on the source website.
  *   localPath    Path to the challenge folder, relative to the repo root.
- *   liveUrl      Deployed site once you have one, otherwise null.
+ *   liveUrl      Derived automatically from `localPath` when this catalog is exported.
  */
 
 export const SOURCES = {
@@ -49,6 +49,12 @@ export const STATUSES = {
   completed: { label: 'Completed' },
 }
 
+const LIVE_URL_ORIGIN = 'https://react-challenges.farhansegujja.com'
+
+function liveUrlFor(localPath) {
+  return `${LIVE_URL_ORIGIN}/${localPath}/`
+}
+
 export const challenges = [
   // -------------------------------------------------------------------
   // Frontend Mentor -- https://www.frontendmentor.io
@@ -67,7 +73,6 @@ export const challenges = [
     premium: false,
     originalUrl: 'https://www.frontendmentor.io/challenges/results-summary-component-CE_K6s0maV',
     localPath: 'frontend-mentor/01-results-summary',
-    liveUrl: null,
   },
   {
     id: 'fm-02',
@@ -82,7 +87,6 @@ export const challenges = [
     premium: false,
     originalUrl: 'https://www.frontendmentor.io/challenges/social-links-profile-UG32l9m6dQ',
     localPath: 'frontend-mentor/02-social-links-profile',
-    liveUrl: null,
   },
   {
     id: 'fm-03',
@@ -97,7 +101,6 @@ export const challenges = [
     premium: false,
     originalUrl: 'https://www.frontendmentor.io/challenges/faq-accordion-wyfFdeBwBz',
     localPath: 'frontend-mentor/03-faq-accordion',
-    liveUrl: null,
   },
   {
     id: 'fm-04',
@@ -112,7 +115,6 @@ export const challenges = [
     premium: false,
     originalUrl: 'https://www.frontendmentor.io/challenges/interactive-rating-component-koxpeBUmI',
     localPath: 'frontend-mentor/04-interactive-rating-component',
-    liveUrl: null,
   },
   {
     id: 'fm-05',
@@ -127,7 +129,6 @@ export const challenges = [
     premium: false,
     originalUrl: 'https://www.frontendmentor.io/challenges/expenses-chart-component-e7yJBUdjwt',
     localPath: 'frontend-mentor/05-expenses-chart-component',
-    liveUrl: null,
   },
   {
     id: 'fm-06',
@@ -142,7 +143,6 @@ export const challenges = [
     premium: false,
     originalUrl: 'https://www.frontendmentor.io/challenges/contact-form--G-hYlqKJj',
     localPath: 'frontend-mentor/06-contact-form',
-    liveUrl: null,
   },
   {
     id: 'fm-07',
@@ -158,7 +158,6 @@ export const challenges = [
     originalUrl:
       'https://www.frontendmentor.io/challenges/newsletter-signup-form-with-success-message-3FC1AZbNrv',
     localPath: 'frontend-mentor/07-newsletter-signup-form',
-    liveUrl: null,
   },
   {
     id: 'fm-08',
@@ -173,7 +172,6 @@ export const challenges = [
     premium: false,
     originalUrl: 'https://www.frontendmentor.io/challenges/tip-calculator-app-ugJNGbJUX',
     localPath: 'frontend-mentor/08-tip-calculator',
-    liveUrl: null,
   },
   {
     id: 'fm-09',
@@ -188,7 +186,6 @@ export const challenges = [
     premium: false,
     originalUrl: 'https://www.frontendmentor.io/challenges/time-tracking-dashboard-UIQ7167Jw',
     localPath: 'frontend-mentor/09-time-tracking-dashboard',
-    liveUrl: null,
   },
   {
     id: 'fm-10',
@@ -203,7 +200,6 @@ export const challenges = [
     premium: false,
     originalUrl: 'https://www.frontendmentor.io/challenges/mortgage-repayment-calculator-Galx1LXK73',
     localPath: 'frontend-mentor/10-mortgage-repayment-calculator',
-    liveUrl: null,
   },
   {
     id: 'fm-11',
@@ -218,7 +214,6 @@ export const challenges = [
     premium: true,
     originalUrl: 'https://www.frontendmentor.io/challenges/character-counter-znSgeWs_i6',
     localPath: 'frontend-mentor/11-character-counter',
-    liveUrl: null,
   },
   {
     id: 'fm-12',
@@ -233,7 +228,6 @@ export const challenges = [
     premium: false,
     originalUrl: 'https://www.frontendmentor.io/challenges/advice-generator-app-QdUG-13db',
     localPath: 'frontend-mentor/12-advice-generator',
-    liveUrl: null,
   },
   {
     id: 'fm-13',
@@ -248,7 +242,6 @@ export const challenges = [
     premium: false,
     originalUrl: 'https://www.frontendmentor.io/challenges/product-list-with-cart-5MmqLVAp_d',
     localPath: 'frontend-mentor/13-product-list-with-cart',
-    liveUrl: null,
   },
   {
     id: 'fm-14',
@@ -263,7 +256,6 @@ export const challenges = [
     premium: false,
     originalUrl: 'https://www.frontendmentor.io/challenges/conference-ticket-generator-oq5gFIU12w',
     localPath: 'frontend-mentor/14-conference-ticket-generator',
-    liveUrl: null,
   },
   {
     id: 'fm-15',
@@ -278,7 +270,6 @@ export const challenges = [
     premium: true,
     originalUrl: 'https://www.frontendmentor.io/challenges/github-user-search-app-Q09YOgaH6',
     localPath: 'frontend-mentor/15-github-user-search',
-    liveUrl: null,
   },
   {
     id: 'fm-16',
@@ -293,7 +284,6 @@ export const challenges = [
     premium: true,
     originalUrl: 'https://www.frontendmentor.io/challenges/password-generator-app-Mr8CLycqjh',
     localPath: 'frontend-mentor/16-password-generator',
-    liveUrl: null,
   },
   {
     id: 'fm-17',
@@ -308,7 +298,6 @@ export const challenges = [
     premium: false,
     originalUrl: 'https://www.frontendmentor.io/challenges/interactive-comments-section-iG1RugEG9',
     localPath: 'frontend-mentor/17-interactive-comments-section',
-    liveUrl: null,
   },
   {
     id: 'fm-18',
@@ -323,7 +312,6 @@ export const challenges = [
     premium: false,
     originalUrl: 'https://www.frontendmentor.io/challenges/todo-app-Su1_KokOW',
     localPath: 'frontend-mentor/18-todo-app',
-    liveUrl: null,
   },
   {
     id: 'fm-19',
@@ -338,7 +326,6 @@ export const challenges = [
     premium: false,
     originalUrl: 'https://www.frontendmentor.io/challenges/calculator-app-9lteq5N29',
     localPath: 'frontend-mentor/19-calculator-app',
-    liveUrl: null,
   },
   {
     id: 'fm-20',
@@ -353,7 +340,6 @@ export const challenges = [
     premium: false,
     originalUrl: 'https://www.frontendmentor.io/challenges/weather-app-K1FhddVm49',
     localPath: 'frontend-mentor/20-weather-app',
-    liveUrl: null,
   },
   {
     id: 'fm-21',
@@ -368,7 +354,6 @@ export const challenges = [
     premium: true,
     originalUrl: 'https://www.frontendmentor.io/challenges/personal-blog-lJpVCnmozL',
     localPath: 'frontend-mentor/21-personal-blog',
-    liveUrl: null,
   },
   {
     id: 'fm-22',
@@ -383,7 +368,6 @@ export const challenges = [
     premium: true,
     originalUrl: 'https://www.frontendmentor.io/challenges/frontend-quiz-app-BE7xkzXQnU',
     localPath: 'frontend-mentor/22-frontend-quiz',
-    liveUrl: null,
   },
   {
     id: 'fm-23',
@@ -398,7 +382,6 @@ export const challenges = [
     premium: true,
     originalUrl: 'https://www.frontendmentor.io/challenges/devjobs-web-app-HuvC_LP4l',
     localPath: 'frontend-mentor/23-devjobs-web-app',
-    liveUrl: null,
   },
   {
     id: 'fm-24',
@@ -414,7 +397,6 @@ export const challenges = [
     originalUrl:
       'https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca',
     localPath: 'frontend-mentor/24-rest-countries-api',
-    liveUrl: null,
   },
   {
     id: 'fm-25',
@@ -429,7 +411,6 @@ export const challenges = [
     premium: false,
     originalUrl: 'https://www.frontendmentor.io/challenges/multistep-form-YVAnSdqQBJ',
     localPath: 'frontend-mentor/25-multi-step-form',
-    liveUrl: null,
   },
   {
     id: 'fm-26',
@@ -444,7 +425,6 @@ export const challenges = [
     premium: true,
     originalUrl: 'https://www.frontendmentor.io/challenges/bookmark-manager-app',
     localPath: 'frontend-mentor/26-bookmark-manager',
-    liveUrl: null,
   },
   {
     id: 'fm-27',
@@ -459,7 +439,6 @@ export const challenges = [
     premium: true,
     originalUrl: 'https://www.frontendmentor.io/challenges/pomodoro-app-KBFnycJ6G',
     localPath: 'frontend-mentor/27-pomodoro-app',
-    liveUrl: null,
   },
   {
     id: 'fm-28',
@@ -474,7 +453,6 @@ export const challenges = [
     premium: true,
     originalUrl: 'https://www.frontendmentor.io/challenges/mood-tracking-app-E2XeKhDF0B',
     localPath: 'frontend-mentor/28-mood-tracking-app',
-    liveUrl: null,
   },
   {
     id: 'fm-29',
@@ -489,7 +467,6 @@ export const challenges = [
     premium: false,
     originalUrl: 'https://www.frontendmentor.io/challenges/rock-paper-scissors-game-pTgwgvgH',
     localPath: 'frontend-mentor/29-rock-paper-scissors',
-    liveUrl: null,
   },
   {
     id: 'fm-30',
@@ -504,7 +481,6 @@ export const challenges = [
     premium: true,
     originalUrl: 'https://www.frontendmentor.io/challenges/entertainment-web-app-J-UhgAW1X',
     localPath: 'frontend-mentor/30-entertainment-web-app',
-    liveUrl: null,
   },
   {
     id: 'fm-31',
@@ -519,7 +495,6 @@ export const challenges = [
     premium: true,
     originalUrl: 'https://www.frontendmentor.io/challenges/memory-game-vse4WFPvM',
     localPath: 'frontend-mentor/31-memory-game',
-    liveUrl: null,
   },
   {
     id: 'fm-32',
@@ -534,7 +509,6 @@ export const challenges = [
     premium: true,
     originalUrl: 'https://www.frontendmentor.io/challenges/connect-four-game-6G8QVH923s',
     localPath: 'frontend-mentor/32-connect-four',
-    liveUrl: null,
   },
 
   // -------------------------------------------------------------------
@@ -556,7 +530,6 @@ export const challenges = [
     premium: false,
     originalUrl: 'https://reactpractice.dev/exercise/build-a-public-holidays-app/',
     localPath: 'react-practice/01-public-holidays-app',
-    liveUrl: null,
   },
   {
     id: 'rp-02',
@@ -571,7 +544,6 @@ export const challenges = [
     premium: false,
     originalUrl: 'https://reactpractice.dev/exercise/build-an-accordion-component/',
     localPath: 'react-practice/02-accordion',
-    liveUrl: null,
   },
   {
     id: 'rp-03',
@@ -587,7 +559,6 @@ export const challenges = [
     originalUrl:
       'https://reactpractice.dev/exercise/create-a-custom-hook-that-allows-saving-items-to-the-local-storage/',
     localPath: 'react-practice/03-local-storage-custom-hook',
-    liveUrl: null,
   },
   {
     id: 'rp-04',
@@ -602,7 +573,6 @@ export const challenges = [
     premium: false,
     originalUrl: 'https://reactpractice.dev/exercise/build-a-memory-game/',
     localPath: 'react-practice/04-memory-game',
-    liveUrl: null,
   },
   {
     id: 'rp-05',
@@ -617,7 +587,6 @@ export const challenges = [
     premium: false,
     originalUrl: 'https://reactpractice.dev/exercise/show-top-10-articles-from-hacker-news/',
     localPath: 'react-practice/05-hacker-news-top-articles',
-    liveUrl: null,
   },
   {
     id: 'rp-06',
@@ -632,7 +601,6 @@ export const challenges = [
     premium: false,
     originalUrl: 'https://reactpractice.dev/exercise/build-a-drag-and-drop-to-do-list/',
     localPath: 'react-practice/06-drag-and-drop-todo',
-    liveUrl: null,
   },
   {
     id: 'rp-07',
@@ -647,7 +615,6 @@ export const challenges = [
     premium: false,
     originalUrl: 'https://reactpractice.dev/exercise/create-a-movie-search-page/',
     localPath: 'react-practice/07-movie-search',
-    liveUrl: null,
   },
   {
     id: 'rp-08',
@@ -663,7 +630,6 @@ export const challenges = [
     originalUrl:
       'https://reactpractice.dev/exercise/create-a-timer-that-can-be-started-and-stopped/',
     localPath: 'react-practice/08-start-stop-timer',
-    liveUrl: null,
   },
   {
     id: 'rp-09',
@@ -679,7 +645,6 @@ export const challenges = [
     originalUrl:
       'https://reactpractice.dev/exercise/build-a-paginated-pokemons-list-with-a-load-more-button-starting-from-failing-unit-tests/',
     localPath: 'react-practice/09-pokemon-load-more',
-    liveUrl: null,
   },
   {
     id: 'rp-10',
@@ -694,7 +659,6 @@ export const challenges = [
     premium: false,
     originalUrl: 'https://reactpractice.dev/exercise/create-a-simple-contact-book-app/',
     localPath: 'react-practice/10-contact-book',
-    liveUrl: null,
   },
   {
     id: 'rp-11',
@@ -709,7 +673,6 @@ export const challenges = [
     premium: false,
     originalUrl: 'https://reactpractice.dev/exercise/build-a-typewriter-effect-component/',
     localPath: 'react-practice/11-typewriter-effect',
-    liveUrl: null,
   },
   {
     id: 'rp-12',
@@ -724,7 +687,6 @@ export const challenges = [
     premium: false,
     originalUrl: 'https://reactpractice.dev/exercise/build-a-restaurant-reservation-widget/',
     localPath: 'react-practice/12-restaurant-reservation-widget',
-    liveUrl: null,
   },
   {
     id: 'rp-13',
@@ -739,7 +701,6 @@ export const challenges = [
     premium: false,
     originalUrl: 'https://reactpractice.dev/exercise/build-the-github-issue-filter-component/',
     localPath: 'react-practice/13-github-issues-filter',
-    liveUrl: null,
   },
 
   // -------------------------------------------------------------------
@@ -758,7 +719,6 @@ export const challenges = [
     premium: false,
     originalUrl: 'https://devchallenges.io/challenge/simple-coffee-listing',
     localPath: 'dev-challenges/01-simple-coffee-listing',
-    liveUrl: "https://react-challenges.farhansegujja.com/dev-challenges/01-simple-coffee-listing/",
   },
   {
     id: 'dc-02',
@@ -773,7 +733,6 @@ export const challenges = [
     premium: false,
     originalUrl: 'https://devchallenges.io/challenge/property-listing',
     localPath: 'dev-challenges/02-property-listing',
-    liveUrl: null,
   },
   {
     id: 'dc-03',
@@ -788,7 +747,6 @@ export const challenges = [
     premium: false,
     originalUrl: 'https://devchallenges.io/challenge/translate-app',
     localPath: 'dev-challenges/03-translate-app',
-    liveUrl: null,
   },
   {
     id: 'dc-04',
@@ -803,7 +761,6 @@ export const challenges = [
     premium: false,
     originalUrl: 'https://devchallenges.io/challenge/recipe-page-homechef',
     localPath: 'dev-challenges/04-recipe-page-homechef',
-    liveUrl: null,
   },
   {
     id: 'dc-05',
@@ -818,7 +775,6 @@ export const challenges = [
     premium: false,
     originalUrl: 'https://devchallenges.io/challenge/country-page',
     localPath: 'dev-challenges/05-country-page-worldranks',
-    liveUrl: null,
   },
   {
     id: 'dc-06',
@@ -833,7 +789,6 @@ export const challenges = [
     premium: false,
     originalUrl: 'https://devchallenges.io/challenge/country-quizz',
     localPath: 'dev-challenges/06-country-quiz',
-    liveUrl: null,
   },
   {
     id: 'dc-07',
@@ -848,7 +803,6 @@ export const challenges = [
     premium: false,
     originalUrl: 'https://devchallenges.io/challenge/github-profile',
     localPath: 'dev-challenges/07-github-profile',
-    liveUrl: null,
   },
   {
     id: 'dc-08',
@@ -863,7 +817,6 @@ export const challenges = [
     premium: false,
     originalUrl: 'https://devchallenges.io/challenge/ai-chat-bot',
     localPath: 'dev-challenges/08-ai-chatbot-simplechat',
-    liveUrl: null,
   },
   {
     id: 'dc-09',
@@ -878,7 +831,6 @@ export const challenges = [
     premium: false,
     originalUrl: 'https://devchallenges.io/challenge/weather-app',
     localPath: 'dev-challenges/09-weather-app',
-    liveUrl: null,
   },
   {
     id: 'dc-10',
@@ -893,9 +845,11 @@ export const challenges = [
     premium: false,
     originalUrl: 'https://devchallenges.io/challenge/task-manager-app',
     localPath: 'dev-challenges/10-task-manager-app',
-    liveUrl: null,
   },
-]
+].map((challenge) => ({
+  ...challenge,
+  liveUrl: liveUrlFor(challenge.localPath),
+}))
 
 /** Every challenge belonging to one source, in listed order. */
 export function challengesBySource(sourceId) {

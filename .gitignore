@@ -14,6 +14,7 @@ dist/
 build/
 .vite/
 *.local
+homepage/HOMEPAGE_STRUCTURE.md
 
 # ---------------------------------------------------------------
 # Environment variables
