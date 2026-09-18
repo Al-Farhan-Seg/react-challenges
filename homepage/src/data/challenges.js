@@ -715,7 +715,7 @@ export const challenges = [
     difficulty: 'Junior',
     category: null,
     calendarDay: null,
-    status: 'in-progress',
+    status: 'completed',
     premium: false,
     originalUrl: 'https://devchallenges.io/challenge/simple-coffee-listing',
     localPath: 'dev-challenges/01-simple-coffee-listing',
