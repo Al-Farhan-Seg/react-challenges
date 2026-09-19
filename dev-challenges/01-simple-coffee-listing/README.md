@@ -1,56 +1,66 @@
 # 01 - Simple Coffee Listing
 
-| | |
-| --- | --- |
-| Source | [devChallenges](https://devchallenges.io/challenges-dashboard?path=%2C3) |
-| Difficulty | Junior |
-| Challenge brief | https://devchallenges.io/challenge/simple-coffee-listing |
-| Status | **Not Started** |
+|                 |                                                                          |
+| --------------- | ------------------------------------------------------------------------ |
+| Source          | [devChallenges](https://devchallenges.io/challenges-dashboard?path=%2C3) |
+| Difficulty      | Junior                                                                   |
+| Challenge brief | https://devchallenges.io/challenge/simple-coffee-listing                 |
+| Status          | **Completed** ✅                                                         |
 
-## Status
+## Overview
 
-**Not Started.** This folder is a placeholder. No React application has been
-created here yet.
+A coffee shop product listing that fetches a live product feed and renders it
+as a responsive card grid. Built as part of the
+[React Challenges](../../README.md) monorepo, using this repo's standard
+stack: **Vite + React (JavaScript)**, styled with **Tailwind CSS**.
 
-## When I start this challenge
+## Features
 
-This directory becomes its own npm workspace, built with **Vite + React
-(JavaScript)** and styled with **Tailwind CSS**, matching every other
-application in this monorepo.
+- Fetches coffee product data at runtime from a remote JSON feed
+- Filter toggle between **All Products** and **Available Now**
+- Per-item rating display (filled/outline star), falling back to
+  "No ratings" when a product has none
+- **Popular** badge and **Sold Out** state driven by the product data
+- Responsive grid (1 / 2 / 3 columns depending on viewport)
+- Loading state while the feed is being fetched
+- Link back to the original challenge brief
 
-The full step-by-step procedure lives in the root README, under
-*"How to add a new React challenge"*:
+## Tech stack
 
-```
-../../README.md
-```
+- [React 19](https://react.dev/)
+- [Vite](https://vite.dev/)
+- [Tailwind CSS v4](https://tailwindcss.com/)
 
-The short version, run from the repository root. The `mv` steps exist
-because `create-vite` refuses to scaffold into a folder that already has
-files in it, and this README is one:
+## Getting started
+
+Run from the **repository root** (this is an npm workspace, not a
+standalone project):
 
 ```bash
-mv dev-challenges/01-simple-coffee-listing/README.md /tmp/challenge-readme.md
-rm -rf dev-challenges/01-simple-coffee-listing
-
-npm create vite@latest dev-challenges/01-simple-coffee-listing -- --template react --no-immediate
-mv /tmp/challenge-readme.md dev-challenges/01-simple-coffee-listing/README.md
-
-npm pkg set name="@react-challenges/01-simple-coffee-listing" --workspace dev-challenges/01-simple-coffee-listing
 npm install
-npm install tailwindcss @tailwindcss/vite --save-dev --workspace @react-challenges/01-simple-coffee-listing
+npm run dev --workspace @react-challenges/01-simple-coffee-listing
 ```
 
-`--no-immediate` is important: it stops Vite from running its own install
-inside this folder, which is what would create a nested `node_modules` and a
-second lockfile.
+To build it on its own:
 
-Then add Tailwind CSS to the new workspace, and update this challenge's
-`status` in `homepage/src/data/challenges.js` so the homepage card
-reflects the change.
+```bash
+npm run build --workspace @react-challenges/01-simple-coffee-listing
+```
+
+Or build/preview the whole site (dashboard + every started challenge) with
+`npm run build:site` / `npm run preview:homepage`, as described in the
+[root README](../../README.md).
+
+## Data source
+
+Product data is fetched at runtime from devChallenges' curriculum repo:
+
+```
+https://raw.githubusercontent.com/devchallenges-io/curriculum/refs/heads/main/4-frontend-libaries/challenges/group_1/data/simple-coffee-listing-data.json
+```
 
 ## A note on assets
 
-The design files, images and written brief for this challenge belong to
-devChallenges. They are **not** copied into this repository. Download them
-from the challenge page linked above when you start work.
+The design files and written brief for this challenge belong to
+devChallenges and are **not** copied into this repository. See the challenge
+brief linked above for the original design reference.

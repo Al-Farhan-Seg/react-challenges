@@ -729,7 +729,7 @@ export const challenges = [
     difficulty: 'Mid-level',
     category: null,
     calendarDay: null,
-    status: 'not-started',
+    status: 'in-progress',
     premium: false,
     originalUrl: 'https://devchallenges.io/challenge/property-listing',
     localPath: 'dev-challenges/02-property-listing',
