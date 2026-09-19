@@ -75,8 +75,12 @@ function App() {
           ) : (
             displayedCoffee.map((coffee) => (
               <div key={coffee.id} className="bg-zinc-850 w-full max-w-70 min-w-0 rounded-lg">
-                <div className="relative">
-                  <img className="w-full rounded-lg" src={coffee.image} alt="" />
+                <div className="relative h-46.25 w-full overflow-hidden rounded-lg bg-zinc-700">
+                  <img
+                    className="h-full w-full rounded-lg object-cover"
+                    src={coffee.image}
+                    alt=""
+                  />
                   {coffee.popular ? (
                     <p className="absolute top-1 left-1.5 rounded-2xl bg-amber-400 px-3 py-0.5 text-black">
                       Popular
@@ -91,11 +95,7 @@ function App() {
                 </div>
                 <div className="flex items-center justify-between">
                   <p className="my-2 flex items-center justify-start">
-                    <img
-                      className="mr-1 h-5 w-5"
-                      src={coffee.rating ? filledStar : star}
-                      alt=""
-                    />
+                    <img className="mr-1 h-5 w-5" src={coffee.rating ? filledStar : star} alt="" />
                     {coffee.rating ? (
                       <>
                         {coffee.rating}
@@ -111,14 +111,13 @@ function App() {
             ))
           )}
         </div>
-        <div className='flex justify-center'>
+        <div className="flex justify-center">
           <SourceLink
             href="https://devchallenges.io/challenge/simple-coffee-listing"
             label="View Project Source"
-            className='hover:bg-zinc-500 p-3 rounded-md text-zinc-300 transition hover:border-zinc-400 bg-zinc-700 hover:text-white flex justify-center gap-3 items-center'
+            className="flex items-center justify-center gap-3 rounded-md bg-zinc-700 p-3 text-zinc-300 transition hover:border-zinc-400 hover:bg-zinc-500 hover:text-white"
           />
         </div>
-        
       </div>
     </div>
   )
