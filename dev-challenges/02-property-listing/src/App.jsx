@@ -33,13 +33,13 @@ function App() {
   }, [])
 
   const filteredPropertyListingData = propertyListingData.filter((propertyListing) => {
-    if(filters.location !== 'all' && propertyListing.location !== filters.location) {
+    if (filters.location !== 'all' && propertyListing.location !== filters.location) {
       return false
     }
-    if(filters.superhost !== null && propertyListing.superhost !== filters.superhost) {
+    if (filters.superhost !== null && propertyListing.superhost !== filters.superhost) {
       return false
     }
-    if(filters.bedrooms !== null && propertyListing.capacity['bedroom'] !== filters.bedrooms) {
+    if (filters.bedrooms !== null && propertyListing.capacity['bedroom'] !== filters.bedrooms) {
       return false
     }
 
@@ -48,66 +48,66 @@ function App() {
 
   // ['id', 'title', 'description', 'price', 'rating', 'superhost', 'location', 'capacity', 'image']
 
+  const locationOptions = ['all', 'Norway', 'Finland', 'Sweden', 'Switzerland']
+
   return (
-    <div className="min-h-screen bg-zinc-800 text-white">
-      <div className="m-auto w-[98dvw] min-w-0 p-10 md:w-[65vw]">
-        <h1 className="text-center text-2xl font-bold">Property Listing</h1>
-        <div>
-          <div>
-            <button
-             onClick={() => setFilters({ location: 'all', superhost: null, bedrooms: null })}
-              className={`rounded-lg px-3 py-2 ${
-                filters.location === 'all' ? 'bg-zinc-600' : 'bg-transparent'
-              }`}
-            >
-              All
-            </button>
-            <button
-              onClick={() => setFilters({ ...filters, location: 'Norway' })}
-              className={`rounded-lg px-3 py-2 ${
-                filters.location === 'Norway' ? 'bg-zinc-600' : 'bg-transparent'
-              }`}
-            >
-              Norway
-            </button>
-            <button
-              onClick={() => setFilters({ ...filters, location: 'Finland' })}
-              className={`rounded-lg px-3 py-2 ${
-                filters.location === 'Finland' ? 'bg-zinc-600' : 'bg-transparent'
-              }`}
-            >
-              Finland
-            </button>
-            <button
-              onClick={() => setFilters({ ...filters, location: 'Sweden' })}
-              className={`rounded-lg px-3 py-2 ${
-                filters.location === 'Sweden' ? 'bg-zinc-600' : 'bg-transparent'
-              }`}
-            >
-              Sweden
-            </button>
-            <button
-              onClick={() => setFilters({ ...filters, location: 'Switzerland' })}
-              className={`rounded-lg px-3 py-2 ${
-                filters.location === 'Switzerland' ? 'bg-zinc-600' : 'bg-transparent'
-              }`}
-            >
-              Switzerland
-            </button>
-          </div>
-          <div>
-            <button
-              onClick={() => setFilters({ ...filters, superhost: !filters.superhost })}
-              className={`relative h-7 w-12 rounded-full transition-colors ${
-                filters.superhost ? 'bg-green-500' : 'bg-gray-300'
-              }`}
-            >
-              <span
-                className={`absolute top-1 left-1 h-5 w-5 rounded-full bg-white transition-transform ${
-                  filters.superhost ? 'translate-x-5' : 'translate-x-0'
+    <div className="min-h-screen bg-zinc-900 text-zinc-100">
+      <div className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-14">
+        <header className="mb-8 lg:mb-10">
+          <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">Stays in the Nordics</h1>
+          <p className="mt-1 text-sm text-zinc-400 sm:text-base">
+            {filteredPropertyListingData.length} stays across Norway, Finland, Sweden and
+            Switzerland
+          </p>
+        </header>
+
+        <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between lg:mb-10">
+          <div className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0">
+            {locationOptions.map((location) => (
+              <button
+                key={location}
+                onClick={() =>
+                  location === 'all'
+                    ? setFilters({ location: 'all', superhost: null, bedrooms: null })
+                    : setFilters({ ...filters, location })
+                }
+                className={`shrink-0 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+                  filters.location === location
+                    ? 'bg-sky-600 text-white'
+                    : 'bg-zinc-800 text-zinc-300 hover:bg-zinc-700'
                 }`}
-              />
-            </button>
+              >
+                {location === 'all' ? 'All' : location}
+              </button>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-4">
+            <label className="flex items-center gap-2 text-sm text-zinc-300">
+              Superhost
+              <button
+                onClick={() =>
+                  setFilters({
+                    ...filters,
+                    superhost:
+                      filters.superhost === null
+                        ? true
+                        : filters.superhost === true
+                          ? false
+                          : null,
+                  })
+                }
+                className={`relative h-6 w-11 shrink-0 rounded-full transition-colors ${
+                  filters.superhost ? 'bg-sky-600' : 'bg-zinc-700'
+                }`}
+              >
+                <span
+                  className={`absolute top-1 left-1 h-4 w-4 rounded-full bg-white transition-transform ${
+                    filters.superhost ? 'translate-x-5' : 'translate-x-0'
+                  }`}
+                />
+              </button>
+            </label>
 
             <select
               value={filters.bedrooms ?? ''}
@@ -117,6 +117,7 @@ function App() {
                   bedrooms: e.target.value ? Number(e.target.value) : null,
                 })
               }
+              className="rounded-lg bg-zinc-800 px-3 py-2 text-sm text-zinc-300 hover:bg-zinc-700"
             >
               <option value="">Any bedrooms</option>
               <option value="1">1 Bedroom</option>
@@ -124,26 +125,26 @@ function App() {
             </select>
           </div>
         </div>
+
         {loading ? (
-          <p>Loading</p>
+          <p className="py-16 text-center text-zinc-400">Loading stays…</p>
+        ) : filteredPropertyListingData.length === 0 ? (
+          <p className="py-16 text-center text-zinc-400">
+            No stays match these filters. Try clearing one.
+          </p>
         ) : (
-          <div>
-            <p>Over 200 stays</p>
-            {filteredPropertyListingData.map((propertyListing) => {
-              return (
-                <>
-                  <PropertyCard key={propertyListing.id} props={propertyListing} />
-                </>
-              )
-            })}
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {filteredPropertyListingData.map((propertyListing) => (
+              <PropertyCard key={propertyListing.id} props={propertyListing} />
+            ))}
           </div>
         )}
 
-        <div className="flex justify-center">
+        <div className="mt-10 flex justify-center lg:mt-14">
           <SourceLink
             href="https://devchallenges.io/challenge/property-listing"
             label="View Project Source"
-            className="flex items-center justify-center gap-3 rounded-md bg-zinc-700 p-3 text-zinc-300 transition hover:border-zinc-400 hover:bg-zinc-500 hover:text-white"
+            className="flex items-center justify-center gap-3 rounded-md bg-zinc-800 p-3 text-zinc-300 transition hover:border-zinc-400 hover:bg-zinc-700 hover:text-white"
           />
         </div>
       </div>
@@ -153,38 +154,41 @@ function App() {
 
 function PropertyCard({ props }) {
   return (
-    <div>
-      <div>
-        <img src={props.image} alt={`${props.title}`} />
-        {props.superhost ? <span>Superhost ⭐</span> : <></>}
-        {props.location}
+    <div className="overflow-hidden rounded-xl bg-zinc-800 transition-transform hover:-translate-y-1">
+      <div className="relative aspect-4/3 w-full overflow-hidden bg-zinc-700">
+        <img
+          src={props.image}
+          alt={props.title}
+          className="h-full w-full object-cover"
+        />
+        {props.superhost && (
+          <span className="absolute top-2 left-2 rounded-full bg-zinc-900/80 px-2.5 py-1 text-xs font-medium text-amber-400">
+            Superhost ⭐
+          </span>
+        )}
+        <span className="absolute right-2 bottom-2 rounded-full bg-zinc-900/80 px-2.5 py-1 text-xs text-zinc-200">
+          {props.location}
+        </span>
       </div>
 
-      <div>
-        <p>{props.title}</p>
-        <p>{props.description}</p>
-        <div>
+      <div className="flex flex-col gap-2 p-4">
+        <p className="font-semibold text-zinc-100">{props.title}</p>
+        <p className="line-clamp-2 text-sm text-zinc-400">{props.description}</p>
+        <div className="flex gap-4 text-sm text-zinc-300">
           <p>
-            🏠
-            <span>{props.capacity['bedroom']} </span>
-            bedroom
+            🏠 <span>{props.capacity['bedroom']}</span> bedroom
           </p>
           <p>
-            👤
-            <span>{props.capacity['people']} </span>
-            guests
+            👤 <span>{props.capacity['people']}</span> guests
           </p>
         </div>
-      </div>
-
-      <div>
-        <p>
-          <span>${props.price}</span>
-          /night
-        </p>
-        <p>
-          ⭐<span>{props.rating}</span>
-        </p>
+        <div className="mt-2 flex items-center justify-between border-t border-zinc-700 pt-3">
+          <p>
+            <span className="font-semibold text-zinc-100">${props.price}</span>
+            <span className="text-sm text-zinc-400"> /night</span>
+          </p>
+          <p className="text-sm text-zinc-300">⭐ {props.rating}</p>
+        </div>
       </div>
     </div>
   )
