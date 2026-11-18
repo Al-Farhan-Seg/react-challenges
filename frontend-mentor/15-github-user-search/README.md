@@ -1,57 +1,52 @@
 # 15 - GitHub user search app
 
-| | |
-| --- | --- |
-| Source | [Frontend Mentor](https://www.frontendmentor.io/use-cases/react-projects) |
-| Difficulty | Junior |
-| Access | Premium |
+|                 |                                                                          |
+| --------------- | ------------------------------------------------------------------------ |
+| Source          | [Frontend Mentor](https://www.frontendmentor.io/use-cases/react-projects) |
+| Difficulty      | Junior |
+| Access          | Premium |
 | Challenge brief | https://www.frontendmentor.io/challenges/github-user-search-app-Q09YOgaH6 |
-| Status | **Not Started** |
+| Status          | **In Progress** 🚧 |
 
-## Status
+## Overview
 
-**Not Started.** This folder is a placeholder. No React application has been
-created here yet.
+A React challenge currently being implemented as part of the
+[React Challenges](../../README.md) monorepo. This workspace is ready for
+development with the repository's standard stack: **Vite + React
+(JavaScript)**, styled with **Tailwind CSS**.
 
-## When I start this challenge
+## Focus
 
-This directory becomes its own npm workspace, built with **Vite + React
-(JavaScript)** and styled with **Tailwind CSS**, matching every other
-application in this monorepo.
+This project will focus on API fetching, search, loading/error/empty states, and external-data rendering.
 
-The full step-by-step procedure lives in the root README, under
-*"How to add a new React challenge"*:
+## Tech stack
 
-```
-../../README.md
-```
+- [React 19](https://react.dev/)
+- [Vite](https://vite.dev/)
+- [Tailwind CSS v4](https://tailwindcss.com/)
 
-The short version, run from the repository root. The `mv` steps exist
-because `create-vite` refuses to scaffold into a folder that already has
-files in it, and this README is one:
+## Getting started
+
+Run from the **repository root** (this is an npm workspace, not a standalone
+project):
 
 ```bash
-mv frontend-mentor/15-github-user-search/README.md /tmp/challenge-readme.md
-rm -rf frontend-mentor/15-github-user-search
-
-npm create vite@latest frontend-mentor/15-github-user-search -- --template react --no-immediate
-mv /tmp/challenge-readme.md frontend-mentor/15-github-user-search/README.md
-
-npm pkg set name="@react-challenges/15-github-user-search" --workspace frontend-mentor/15-github-user-search
 npm install
-npm install tailwindcss @tailwindcss/vite --save-dev --workspace @react-challenges/15-github-user-search
+npm run dev --workspace @react-challenges/15-github-user-search
 ```
 
-`--no-immediate` is important: it stops Vite from running its own install
-inside this folder, which is what would create a nested `node_modules` and a
-second lockfile.
+To build it on its own:
 
-Then add Tailwind CSS to the new workspace, and update this challenge's
-`status` in `homepage/src/data/challenges.js` so the homepage card
-reflects the change.
+```bash
+npm run build --workspace @react-challenges/15-github-user-search
+```
+
+Or build/preview the whole site (dashboard + every started challenge) with
+`npm run build:site` / `npm run preview:homepage`, as described in the
+[root README](../../README.md).
 
 ## A note on assets
 
-The design files, images and written brief for this challenge belong to
-Frontend Mentor. They are **not** copied into this repository. Download them
-from the challenge page linked above when you start work.
+The design files, images, and written brief for this challenge belong to
+Frontend Mentor. They are not copied into this repository. See the challenge brief
+linked above for the original design reference.
