@@ -5,3 +5,19 @@
     margin: 0;
   }
 }
+
+@theme {
+  /* Primary */
+  --color-brand-green-light: hsl(148, 38%, 91%);
+  --color-brand-green: hsl(169, 82%, 27%);
+  --color-brand-red: hsl(0, 66%, 54%);
+
+  /* Neutral */
+  --color-brand-white: hsl(0, 0%, 100%);
+  --color-brand-grey-muted: hsl(186, 15%, 59%);
+  --color-brand-grey-dark: hsl(187, 24%, 22%);
+}
+
+body {
+  font-family: "Karla", sans-serif;
+}
