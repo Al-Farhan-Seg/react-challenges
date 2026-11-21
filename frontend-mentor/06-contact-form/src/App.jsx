@@ -103,7 +103,7 @@ function App() {
 
   return (
     <main className="bg-brand-green-light flex min-h-dvh items-center justify-center p-4">
-      <div className="bg-brand-white w-full max-w-[736px] rounded-2xl p-6 md:p-10">
+      <div className="bg-brand-white w-full max-w-184 rounded-2xl p-6 md:p-10">
         <h1 className="text-brand-grey-dark mb-6 text-3xl font-bold">Contact Us</h1>
 
         <form action="" className="flex flex-col gap-6">
